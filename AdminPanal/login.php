@@ -1,3 +1,26 @@
+<?php
+    
+    require("../php/connectivity.php");
+    require("../php/MyLib.php");
+    if(isset($_SESSION['adminInfo'])){
+        header("Location: index.php");
+    } 
+    if(isset($_POST['submit'])){
+        $table                      = "admin_login";
+        $where['email']             = $_POST['email'];
+        $where['password']          = $_POST['password'];
+        $where['admin_status']      = "Active";
+        $auth                       =$db->getRecords($table,$where);
+        if(!empty($auth)){
+            $_SESSION['adminInfo'] = $auth;
+            header("Location: index.php");
+        }
+        else{
+            echo "i am in else "; exit;
+        }  
+        //$ml->pr($db->getRecords($table,$where));
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
     
@@ -37,21 +60,21 @@
                 <a class="dev-page-login-block__logo">Intuitive</a>
                 <div class="dev-page-login-block__form">
                     <div class="title"><strong>Welcome</strong>, please login</div>
-                    <form action="http://aqvatarius.com/themes/intuitive/index.html" method="post">                        
+                    <form action="" method="post">                        
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                <input type="text" class="form-control" placeholder="Login">
+                                <input type="text" name="email" class="form-control" placeholder="Login">
                             </div>
                         </div>                        
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                                <input type="password" class="form-control" placeholder="Password">
+                                <input type="password" name="password" class="form-control" placeholder="Password">
                             </div>
                         </div>
                         <div class="form-group no-border margin-top-20">
-                            <button class="btn btn-success btn-block">Login</button>
+                            <button type="submit" name="submit" class="btn btn-success btn-block">Login</button>
                         </div>
                         <p><a href="#">Forgot Password?</a></p>                        
                     </form>
