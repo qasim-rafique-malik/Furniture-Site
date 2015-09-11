@@ -6,11 +6,11 @@
                             
                         <!-- page title -->
                         <div class="page-title" id="tour-step-4">
-                            <h1>DASHBOARD</h1>
+                            <h1>Contact</h1>
                             <p>List of awesome widgets that can be used everywhere in template.</p>
                             
                             <ul class="breadcrumb">
-                                <li><a href="#">Dashboard</a></li>
+                                <li><a href="#">Categories</a></li>
                             </ul>
                         </div>                        
                         <!-- ./page title -->

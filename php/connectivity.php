@@ -19,7 +19,11 @@ class connectivity extends mysqli{ // class body start
 			);
 	}
 	
-	public function getRecords($table, $where=false){
+	/*
+		This function will make and execute the query
+		and return the my_sql result
+	*/
+	public function getRecords($table, $where=false){// method getRecords body start
 		
 		if($where){
 			$where = $this->makeWhere($where);
@@ -27,12 +31,17 @@ class connectivity extends mysqli{ // class body start
 		$query = "SELECT * FROM  $table ".$where;
 		return $this->exeQuery($query);
 		
-	}
+	}// method getRecords body end
 	
-	public function makeWhere($where){
+	/*
+		This function will make and return a where clause for my_sql query
+		it takes associated array like
+		$where["fieldName"] = 'value';
+	*/
+	public function makeWhere($where){// method makeWhere body start
 		
-		$count = 0;
-		$returnWhere = "";
+		$count 				= 0;
+		$returnWhere 		= "";
 		foreach($where as $key => $val){
 			
 			if($count < 1){
@@ -41,14 +50,13 @@ class connectivity extends mysqli{ // class body start
 			else{
 				$returnWhere .= "AND $key = '$val' ";
 			}
-			
 			$count++;
 		}
 		return $returnWhere;
-	}
+	}// method makeWhere body end
 	
 	/*
-		This method accept two paramiter: 
+		This method accept two parameter: 
 		1 the query string : to execute query
 		2 returntype
 			if  retruntrype is true then 
@@ -75,8 +83,13 @@ class connectivity extends mysqli{ // class body start
 		}
 		 
 	}// method exeQuery body end
-	
-	
+
+	/*
+		This is the test function for testing 
+	*/	
+	public function test(){
+		echo "i am in test";
+	}
 	
 }// class body end
 

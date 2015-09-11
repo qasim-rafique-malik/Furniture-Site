@@ -21,16 +21,36 @@
                         <li class="active">
                             <a href="index.html"><i class="fa fa-desktop"></i> <span>Dashboard</span></a>
                         </li> 
-                        <li class="active">
-                            <a href="index.html"><i class="fa fa-desktop"></i> <span>Categories</span></a>
+                        <li class="">
+                            <a href="#"><i class="fa fa-desktop"></i> <span>Categories</span></a>
+                            <ul>
+                                <li>
+                                    <a href="categories.php">Add Categories</a>
+                                </li>
+                                <li>
+                                    <a href="categories.php">Categories List</a>
+                                </li>
+                            </ul>
+                            
                         </li>
-                        <li class="active">
-                            <a href="index.html"><i class="fa fa-desktop"></i> <span>Products</span></a>
+                        <li class="">
+                            <a href="#"><i class="fa fa-desktop"></i> <span>Products</span></a>
+                            <ul>
+                                <li>
+                                    <a href="products.php">Add Products</a>
+                                </li>
+                                <li>
+                                    <a href="products.php">Products List</a>
+                                </li>
+                            </ul>
                         </li>
-                        <li class="active">
+                        <li class="">
                             <a href="index.html"><i class="fa fa-desktop"></i> <span>Slider</span></a>
-                        </li>                       
-                        <li>
+                        </li>
+                        <li class="">
+                            <a href="contact.php"><i class="fa fa-desktop"></i> <span>Contacts</span></a>
+                        </li>
+                        <!--<li>
                             <a href="#"><i class="fa fa-file-o"></i> <span>Pages</span></a>
                             <ul>
                                 <li>
@@ -148,7 +168,7 @@
                                 </li>
                                 <li><a href="#">Second Level</a></li>
                             </ul>
-                        </li>
+                        </li>-->
                     </ul>
                     
                 </div>
