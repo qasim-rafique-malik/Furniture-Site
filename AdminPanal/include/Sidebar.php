@@ -25,10 +25,10 @@
                             <a href="#"><i class="fa fa-desktop"></i> <span>Categories</span></a>
                             <ul>
                                 <li>
-                                    <a href="categories.php">Add Categories</a>
+                                    <a href="<?=$NC->AdminSiteURL;?>categories.php">Add Categories</a>
                                 </li>
                                 <li>
-                                    <a href="categories.php">Categories List</a>
+                                    <a href="<?=$NC->AdminSiteURL;?>categories.php">Categories List</a>
                                 </li>
                             </ul>
                             
@@ -37,10 +37,10 @@
                             <a href="#"><i class="fa fa-desktop"></i> <span>Products</span></a>
                             <ul>
                                 <li>
-                                    <a href="products.php">Add Products</a>
+                                    <a href="<?=$NC->AdminSiteURL;?>products.php">Add Products</a>
                                 </li>
                                 <li>
-                                    <a href="products.php">Products List</a>
+                                    <a href="<?=$NC->AdminSiteURL;?>products.php">Products List</a>
                                 </li>
                             </ul>
                         </li>
@@ -48,7 +48,7 @@
                             <a href="index.html"><i class="fa fa-desktop"></i> <span>Slider</span></a>
                         </li>
                         <li class="">
-                            <a href="contact.php"><i class="fa fa-desktop"></i> <span>Contacts</span></a>
+                            <a href="<?=$NC->AdminSiteURL;?>contact.php"><i class="fa fa-desktop"></i> <span>Contacts</span></a>
                         </li>
                         <!--<li>
                             <a href="#"><i class="fa fa-file-o"></i> <span>Pages</span></a>

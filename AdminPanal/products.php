@@ -18,9 +18,21 @@
     <div class="wrapper wrapper-white">
         <div class="row">
             <form id="validate" role="form" action="javascript:alert('Form #validate submited');">
-                <div class="col-md-12">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label>Name: </label>                                      
+                        <input type="text" class="form-control" name="name" required />                                    
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Code: </label>                                      
+                        <input type="text" class="form-control" name="Code"/>                                    
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Price: </label>                                      
                         <input type="text" class="form-control" name="name" required />                                    
                     </div>
                 </div>

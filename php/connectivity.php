@@ -20,6 +20,21 @@ class connectivity extends mysqli{ // class body start
 	}
 	
 	/*
+		This function is user to insert data in table
+		take two thinks
+			1-table name
+			2- associated array of field name and value
+		return nothing
+	*/
+	public function insertData($table, $data){// method inserData body start
+		$fields 			= array_keys( $data );
+		$values 			= array_map( "mysql_real_escape_string", array_values( $data ) );
+		$query 				= "INSERT INTO $table(".implode(",",$fields).") VALUES ('".implode("','", $values )."');";
+		$execute 			= $this->query($query);
+		
+	}// method inserData body end
+	
+	/*
 		This function will make and execute the query
 		and return the my_sql result
 	*/
@@ -83,6 +98,7 @@ class connectivity extends mysqli{ // class body start
 		}
 		 
 	}// method exeQuery body end
+	
 
 	/*
 		This is the test function for testing 
