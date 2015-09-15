@@ -19,12 +19,27 @@ class connectivity extends mysqli{ // class body start
 			);
 	}
 	
-	public function getLastRecord($table, $fields, $orderBy){
+	
+	/*
+		This function is use to delete record from table
+	*/
+	public function deleteRecord($table ,$where = false){
+		if($where){
+			$where = $this->makeWhere($where);
+		}
+		$query = "DELETE FROM $table ".$where;
+		$this->query($query);
+	}
+	
+	/*
+		This function is use to get the last record from the table
+	*/
+	public function getLastRecord($table, $fields, $orderBy){// method getLastRecord body start
 		$query 		= "SELECT $fields FROM $table ORDER BY $orderBy DESC";
 		$dbResult 	= $this->query($query);
 		$result 	= $dbResult->fetch_array(MYSQLI_ASSOC);
 		return $result;
-	}
+	}// method getLastRecord body end
 	
 	/*
 		This function is user to insert data in table
@@ -35,7 +50,8 @@ class connectivity extends mysqli{ // class body start
 	*/
 	public function insertData($table, $data){// method inserData body start
 		$fields 			= array_keys( $data );
-		$values 			= array_map( "mysql_real_escape_string", array_values( $data ) );
+		//$values 			= array_map( "mysql_real_escape_string", array_values( $data ) );
+		$values 			= array_values( $data );
 		$query 				= "INSERT INTO $table(".implode(",",$fields).") VALUES ('".implode("','", $values )."');";
 		$execute 			= $this->query($query);
 		

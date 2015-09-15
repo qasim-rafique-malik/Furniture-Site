@@ -3,11 +3,29 @@
     
 ?>
 <?php
-    
+    $table                  = 'categories';
     //getting category data
-    $catData                = $db->getRecords('categories');
-
+    $catData                = $db->getRecords($table);
 ?>
+<?php
+    
+    if(isset($_GET['id'])){
+        $where                  = array();
+        $where['id']            = $_GET['id'];
+
+        // deleting image form of category
+        $getRecord              = $db->getRecords($table, $where);
+        $ml->deleteImage($getRecord[0]['image']);
+
+        //deleting records from categories
+        $db->deleteRecord($table, $where);
+?>
+        <script>
+        window.location.href = "<?=$NC->AdminSiteURL;?>categoriesList.php";
+        </script>
+<?php }    
+?>
+
                           
                             
     <!-- page title -->
@@ -43,12 +61,14 @@
                                             <tr>
                                                  <td><?=$row['id']?></td>
                                                  <td><?=$row['name']?></td>
-                                                 <td><img src="<?=$NC->baseUrl."upload/".$row['image']?>" style="width:20%; height: 8%"/></td>
+                                                 <td style="width:20%;">
+                                                    <img src="<?=$NC->baseUrl."upload/".$row['image']?>" style=" height: 5%"/>
+                                                 </td>
                                                  <td><?=$row['last_modified']?></td>
                                                  <td><?=$row['status']?></td>
                                                  <td>
-                                                    
-                                                    <input class="btn btn-danger" name="submit_cat" value="Submit" type="submit"/>
+                                                    <a class="btn btn-info btn-clean edit"/>View/Edit</a>
+                                                    <a class="btn btn-danger btn-clean delete" id="<?=$row['id']?>"/>Delete</a>
                                                  </td>
                                              </tr>
                                         <?php
@@ -67,3 +87,18 @@
 <?php
     require_once("include/templateFooter.php");
 ?>
+<script>
+$( document ).ready(function() {
+    
+
+    
+    //deleting  records 
+    $( ".delete" ).click(function() {
+        var userChoice = confirm("Are you really want to delete?");
+        if (userChoice) {
+            window.location.href = "<?=$NC->AdminSiteURL;?>categoriesList.php?id="+this.id;
+        }  
+    });
+    
+});
+</script>

@@ -1,7 +1,9 @@
 <?php
     
     require("../php/connectivity.php");
+    require("../php/NameClass.php");
     require("../php/MyLib.php");
+    $ml = new MyLib($NC);
     if(isset($_SESSION['adminInfo'])){
         header("Location: index.php");
     } 
@@ -11,8 +13,10 @@
         $where['password']          = $_POST['password'];
         $where['admin_status']      = "Active";
         $auth                       =$db->getRecords($table,$where);
+        
         if(!empty($auth)){
             $_SESSION['adminInfo'] = $auth;
+            //echo "sss<pre>"; print_r($_SESSION); exit;
             header("Location: index.php");
         }
         else{

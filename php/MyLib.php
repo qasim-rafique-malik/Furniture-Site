@@ -35,5 +35,21 @@ class MyLib{
 		}
 	}// fileupload method body end
 	
+	public function deleteImage($filePath){
+		
+		$target = $_SERVER['DOCUMENT_ROOT']."/".$this->NC->proDir."/upload/".$filePath;
+		// See if it exists before attempting deletion on it
+		if (file_exists($target)) {
+			unlink($target); // Delete now
+		} 
+		// See if it exists again to be sure it was removed
+		if (file_exists($target)) {
+			echo "Problem deleting " . $target;
+		} else {
+			echo "Successfully deleted " . $target;
+		}
+		
+	}
+	
 	
 }

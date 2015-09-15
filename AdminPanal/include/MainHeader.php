@@ -4,7 +4,6 @@
     require("../php/NameClass.php");
     require("../php/MyLib.php");
     $ml = new MyLib($NC);
-    
     if(!isset($_SESSION['adminInfo'])){
         header("Location: login.php");
     }
