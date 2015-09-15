@@ -28,7 +28,7 @@
                                     <a href="<?=$NC->AdminSiteURL;?>categories.php">Add Categories</a>
                                 </li>
                                 <li>
-                                    <a href="<?=$NC->AdminSiteURL;?>categories.php">Categories List</a>
+                                    <a href="<?=$NC->AdminSiteURL;?>categoriesList.php">Categories List</a>
                                 </li>
                             </ul>
                             
@@ -40,7 +40,7 @@
                                     <a href="<?=$NC->AdminSiteURL;?>products.php">Add Products</a>
                                 </li>
                                 <li>
-                                    <a href="<?=$NC->AdminSiteURL;?>products.php">Products List</a>
+                                    <a href="<?=$NC->AdminSiteURL;?>productsList.php">Products List</a>
                                 </li>
                             </ul>
                         </li>

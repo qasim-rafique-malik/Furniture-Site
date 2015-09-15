@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 12, 2015 at 11:05 PM
+-- Generation Time: Sep 15, 2015 at 07:47 AM
 -- Server version: 5.6.21
--- PHP Version: 5.6.3
+-- PHP Version: 5.5.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -63,6 +63,65 @@ INSERT INTO `admin_role` (`id`, `admin_role`, `role_status`) VALUES
 (1, 'Superadmin', 'Active'),
 (2, 'Subadmin', 'Active');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories`
+--
+
+CREATE TABLE IF NOT EXISTS `categories` (
+`id` int(125) NOT NULL,
+  `name` varchar(125) NOT NULL,
+  `description` text,
+  `image` text,
+  `create_date` date DEFAULT NULL,
+  `last_modified` date DEFAULT NULL,
+  `status` enum('Active','Inactive') DEFAULT 'Active'
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cat_pro_xref`
+--
+
+CREATE TABLE IF NOT EXISTS `cat_pro_xref` (
+`id` int(125) NOT NULL,
+  `category_id` int(125) NOT NULL,
+  `product_id` int(125) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contact`
+--
+
+CREATE TABLE IF NOT EXISTS `contact` (
+`id` int(125) NOT NULL,
+  `address` text,
+  `email` text,
+  `phone` text
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
+
+CREATE TABLE IF NOT EXISTS `products` (
+`id` int(125) NOT NULL,
+  `name` varchar(125) NOT NULL,
+  `code` varchar(125) NOT NULL,
+  `price` int(125) NOT NULL,
+  `description` text,
+  `image` text,
+  `create_date` date DEFAULT NULL,
+  `last_modified` date DEFAULT NULL,
+  `status` enum('Active','Inactive') DEFAULT 'Active'
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
 --
 -- Indexes for dumped tables
 --
@@ -80,6 +139,30 @@ ALTER TABLE `admin_role`
  ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `cat_pro_xref`
+--
+ALTER TABLE `cat_pro_xref`
+ ADD PRIMARY KEY (`id`), ADD KEY `fk_cat_id` (`category_id`), ADD KEY `fk_pro_id` (`product_id`);
+
+--
+-- Indexes for table `contact`
+--
+ALTER TABLE `contact`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+ ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -94,6 +177,26 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 ALTER TABLE `admin_role`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
+MODIFY `id` int(125) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `cat_pro_xref`
+--
+ALTER TABLE `cat_pro_xref`
+MODIFY `id` int(125) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `contact`
+--
+ALTER TABLE `contact`
+MODIFY `id` int(125) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+MODIFY `id` int(125) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
 -- Constraints for dumped tables
 --
 
@@ -102,6 +205,13 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 ALTER TABLE `admin_login`
 ADD CONSTRAINT `fk_admin_role` FOREIGN KEY (`role_id`) REFERENCES `admin_role` (`id`);
+
+--
+-- Constraints for table `cat_pro_xref`
+--
+ALTER TABLE `cat_pro_xref`
+ADD CONSTRAINT `fk_cat_id` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
+ADD CONSTRAINT `fk_pro_id` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

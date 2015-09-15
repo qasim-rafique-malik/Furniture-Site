@@ -21,7 +21,7 @@ class MyLib{
 		This function is use to upload file
 		return nothing.
 	*/
-	public function fileupload($fileName, $upload_dir="", $file_types_array=array("jpg"), $max_file_size=2048576){// fileupload method body start
+	public function fileupload($fileName, $upload_dir="", $file_types_array=array("jpg"), $max_file_size=9048576){// fileupload method body start
 		$uploadPath 	= $_SERVER['DOCUMENT_ROOT']."/".$this->NC->proDir."/upload/";
 		$random 		= rand(10,10000);
 		if($_FILES[$fileName]["error"] == "0")

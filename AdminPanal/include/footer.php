@@ -10,6 +10,10 @@
         <script type="text/javascript" src="js/plugins/maskedinput/maskedinput.min.js"></script> 
         <script type="text/javascript" src="js/plugins/jquery-validate/jquery.validate.min.js"></script>
         
+        <!--these are for table-->
+        <script type="text/javascript" src="js/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="js/plugins/sortable/sortable.min.js"></script>
+        
         <!--these are form dashboard -->
         <script type="text/javascript" src="js/plugins/nvd3/d3.min.js"></script>
         <script type="text/javascript" src="js/plugins/nvd3/nv.d3.min.js"></script>

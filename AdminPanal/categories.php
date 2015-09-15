@@ -21,7 +21,7 @@
         }
         
         // inserting data in category table
-        $db->insertData('categories',$data);
+        $db->insertData($table, $data);
         
     }
  
@@ -53,13 +53,13 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>Description: </label>                                      
-                        <textarea class="form-control" name="description" placeholder="placeholder"></textarea>
+                        <textarea class="form-control" name="description"></textarea>
                     </div>
                 </div>
                 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label>Input File <span>Custom Title</span></label>
+                        <label>Select Category Image</label>
                         <br/>                                                               
                         <input type="file" class="file" title="Choose file" name="catImage"/>
                     </div> 

@@ -19,6 +19,13 @@ class connectivity extends mysqli{ // class body start
 			);
 	}
 	
+	public function getLastRecord($table, $fields, $orderBy){
+		$query 		= "SELECT $fields FROM $table ORDER BY $orderBy DESC";
+		$dbResult 	= $this->query($query);
+		$result 	= $dbResult->fetch_array(MYSQLI_ASSOC);
+		return $result;
+	}
+	
 	/*
 		This function is user to insert data in table
 		take two thinks
@@ -83,13 +90,18 @@ class connectivity extends mysqli{ // class body start
 		
 		if($dbResult){
 			if($retureType){
+				
+				$allRecords			= array();
+				
 				// Fetching array from query result
-				$result 		= $dbResult->fetch_array(MYSQLI_NUM);
-				return $result;
+				while($row = $dbResult->fetch_array(MYSQLI_ASSOC)){
+					$allRecords[] 	= $row;
+				}
+				return $allRecords;
 			}
 			else{
 				// Fetching number of rows from query result
-				$result 		= $dbResult->fetch_array(MYSQLI_NUM);
+				$result 		= $dbResult->fetch_array($dbResult);
 				return $result;
 			}
 		}
