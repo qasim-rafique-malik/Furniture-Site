@@ -11,7 +11,7 @@
                             <div class="profile-status online"></div>
                         </div>
                         <div class="profile-info">
-                            <h4>Devin Stephens</h4>
+                            <h4>Qasim Rafique</h4>
                             <span>System Administrator in Company</span>
                         </div>                        
                     </div>
