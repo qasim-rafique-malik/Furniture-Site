@@ -46,7 +46,7 @@ class MyLib{
 		if (file_exists($target)) {
 			echo "Problem deleting " . $target;
 		} else {
-			echo "Successfully deleted " . $target;
+			//echo "Successfully deleted " . $target;
 		}
 		
 	}

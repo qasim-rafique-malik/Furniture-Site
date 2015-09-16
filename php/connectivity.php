@@ -21,27 +21,6 @@ class connectivity extends mysqli{ // class body start
 	
 	
 	/*
-		This function is use to delete record from table
-	*/
-	public function deleteRecord($table ,$where = false){
-		if($where){
-			$where = $this->makeWhere($where);
-		}
-		$query = "DELETE FROM $table ".$where;
-		$this->query($query);
-	}
-	
-	/*
-		This function is use to get the last record from the table
-	*/
-	public function getLastRecord($table, $fields, $orderBy){// method getLastRecord body start
-		$query 		= "SELECT $fields FROM $table ORDER BY $orderBy DESC";
-		$dbResult 	= $this->query($query);
-		$result 	= $dbResult->fetch_array(MYSQLI_ASSOC);
-		return $result;
-	}// method getLastRecord body end
-	
-	/*
 		This function is user to insert data in table
 		take two thinks
 			1-table name
@@ -126,6 +105,45 @@ class connectivity extends mysqli{ // class body start
 		}
 		 
 	}// method exeQuery body end
+	
+	/*
+		This function is use to delete record from table
+	*/
+	public function deleteRecord($table ,$where = false){
+		if($where){
+			$where = $this->makeWhere($where);
+		}
+		$query = "DELETE FROM $table ".$where;
+		$this->query($query);
+	}
+	
+	/*
+		This function is use to get the last record from the table
+	*/
+	public function getLastRecord($table, $fields, $orderBy){// method getLastRecord body start
+		$query 		= "SELECT $fields FROM $table ORDER BY $orderBy DESC";
+		$dbResult 	= $this->query($query);
+		$result 	= $dbResult->fetch_array(MYSQLI_ASSOC);
+		return $result;
+	}// method getLastRecord body end
+	
+	
+	public function updateRecord($table, $setData, $where=false){
+		
+		$set 		 = '';
+		foreach($setData as $key => $val){
+			$set 	.= $key."="."'".$val."'".",";
+		}
+		$set 		 = rtrim($set,",");
+		
+		if($where){
+			$where 	= $this->makeWhere($where);
+		}
+		$query 		= "UPDATE $table SET $set ".$where;
+		
+		$this->query($query);
+					
+	}
 	
 
 	/*

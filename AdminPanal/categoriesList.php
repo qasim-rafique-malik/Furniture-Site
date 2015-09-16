@@ -67,8 +67,12 @@
                                                  <td><?=$row['last_modified']?></td>
                                                  <td><?=$row['status']?></td>
                                                  <td>
-                                                    <a class="btn btn-info btn-clean edit"/>View/Edit</a>
-                                                    <a class="btn btn-danger btn-clean delete" id="<?=$row['id']?>"/>Delete</a>
+                                                    <a href="<?=$NC->AdminSiteURL?>categoryEdit.php?catId=<?=$row['id']?>" class="btn btn-info btn-clean edit"/>
+                                                        View/Edit
+                                                    </a>
+                                                    <a class="btn btn-danger btn-clean delete" id="<?=$row['id']?>"/>
+                                                        Delete
+                                                    </a>
                                                  </td>
                                              </tr>
                                         <?php
