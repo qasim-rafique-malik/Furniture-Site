@@ -23,6 +23,12 @@
     $orderBy                = "id";
     $record                 = $db->getLastRecord($table, $fields, $orderBy);
     $productLastId          = $record['id'];
+    
+    if($record['address'] != "")
+    {
+        $addressRecord = explode("{data}",$record['address']);
+        $ml->pr($addressRecord);
+    }
     $update                 = ($productLastId != "") ? $productLastId :"";
 ?>
                             
@@ -41,34 +47,62 @@
         <div class="row">
             <form id="validate" role="form" method="post" action="contact.php">
                 <div class="addressDiv">
+                    <?php
+                    if(isset($addressRecord) && $addressRecord != ""){
+                        $count      = 0;
+                        foreach($addressRecord as $addressRow){
+                    ?>
+                        <?php if($count == 0){ ?>
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <label>Address: </label>                                      
+                                    <input type="text" class="form-control" name="address[<?=$count?>]"  value="<?=$addressRow?>" required />
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" id="addAddress" class="btn btn-primary btn-clean" style="margin-top: 30px;">Add More</button>
+                            </div>
+                        <?php }
+                            else{
+                        ?>
+                        <div class="col-md-10">
+                                <div class="form-group">
+                                    <label>Address: </label>                                      
+                                    <input type="text" class="form-control" name="address[<?=$count?>]" value="<?=$addressRow?>" required />
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" id="addAddress" class="btn btn-primary btn-clean" style="margin-top: 30px;">Remove</button>
+                            </div>
+                        
+                        <?php         
+                            }
+                        ?>
+                    <?php
+                            $count++;
+                        }
+                    }
+                    else{
+                    ?>
                     <div class="col-md-10">
                         <div class="form-group">
-                            <label>Address: </label>
-                            <?php if($update == ""){?>
+                            <label>Address: </label>                                      
                             <input type="text" class="form-control" name="address[0]" required />
-                            <?php }
-                            else{
-                            ?>
-                            <input type="text" class="form-control" name="address[0]" value="<?=$record['address']?>" required />
-                            <?php }?>
                         </div>
                     </div>
                     <div class="col-md-2">
                         <button type="button" id="addAddress" class="btn btn-primary btn-clean" style="margin-top: 30px;">Add More</button>
                     </div>
+                    <?php
+                    }
+                    ?>
                 </div>   
                 
                 <div class="emailDiv">
                     <div class="col-md-10">
                         <div class="form-group">
-                            <label>Email: </label>
-                            <?php if($update == ""){?>
-                            <input type="text" class="form-control" name="email[0]" required /> 
-                            <?php }
-                            else{
-                            ?>
-                            <input type="text" class="form-control" name="email[0]" value="<?=$record['email']?>" required /> 
-                            <?php }?>                                   
+                            <label>Email: </label>                                      
+                            <input type="text" class="form-control" name="email[0]" required />                                    
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -82,13 +116,7 @@
                     <div class="col-md-10">
                         <div class="form-group">
                             <label>Phone Number: </label>                                      
-                            <?php if($update == ""){?>
-                            <input type="text" class="form-control" name="phoneNumber[0]" required /> 
-                            <?php }
-                            else{
-                            ?>
-                            <input type="text" class="form-control" name="phoneNumber[0]" value="<?=$record['phone']?>" required />
-                            <?php }?> 
+                            <input type="text" class="form-control" name="phoneNumber[0]" required />                                    
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -115,7 +143,7 @@
 <?php
     require_once("include/templateFooter.php");
 ?>
-<!--<script>
+<script>
 $( document ).ready(function() {
     
     //Defining variables
@@ -151,4 +179,4 @@ $( document ).ready(function() {
     });
     
 });
-</script>-->
+</script>

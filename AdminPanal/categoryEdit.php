@@ -17,10 +17,11 @@
         $where['id']        = $_POST['catId'];
         
         // saving file 
-        if(!empty($_FILES)){
+        if(!empty($_FILES) && $_FILES['catImage']['size'] != 0){
             $getRecord              = $db->getRecords($table, $where);
-            $ml->deleteImage($getRecord[0]['image']);
+            $preImage = $getRecord[0]['image'];
             $filePath                = $ml->fileupload('catImage','category/original/');
+            $ml->deleteImage($preImage);
             $data['image']           = $filePath;
         }
         
